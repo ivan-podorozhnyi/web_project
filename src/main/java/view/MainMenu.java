@@ -15,23 +15,23 @@ public class MainMenu {
         boolean isRunning = true;
         while (isRunning) {
             showGreetingMenu();
-            try {
-                switch (reader.readLine()) {
-                    case "1": {
 
-                        break;
-                    }
-                    case "2": {
-
-                        break;
-                    }
-                    case "0": {
-                        isRunning = false;
-                        break;
-                    }
-                    default: {
-                        System.out.println("Wrong input");
-                    }
+            switch (reader.readLine()) {
+                case "1": {
+                    System.out.println("Welcome to admin menu");
+                    break;
+                }
+                case "2": {
+                    System.out.println("Welcome to user menu");
+                    break;
+                }
+                case "0": {
+                    System.out.println("Good bye!");
+                    isRunning = false;
+                    break;
+                }
+                default: {
+                    System.out.println("Wrong input");
                 }
             }
         }
