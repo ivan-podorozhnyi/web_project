@@ -1,22 +1,36 @@
 package services;
 
-import dao.ClientDao;
-import domain.Client;
+import domain.Order;
+import domain.Product;
 
 public class ClientServiceImpl implements ClientService {
 
-    private final ClientDao clientDao;
-
-    public ClientServiceImpl(ClientDao clientDao) {
-        this.clientDao = clientDao;
+    @Override
+    public void addOrder() {
+        Order order = new Order();
+        System.out.println("New order was created");
     }
 
     @Override
-    public void createClient(String name, String lastName, String phone) {
-        Client client = new Client(name, lastName, phone);
-        boolean result = clientDao.saveClient(client);
-        if (result) {
-            System.out.println("Client saved");
-        }
+    public void editOrder(Order order) {
+        System.out.println("Order was updated");
+    }
+
+    @Override
+    public void removeOrder(Order order) {
+        order = null;
+        System.out.println("Order was removed");
+    }
+
+    @Override
+    public void addProduct() {
+        Product order = new Product();
+        System.out.println("New product was created");
+    }
+
+    @Override
+    public void removeProduct(Product product) {
+        product = null;
+        System.out.println("Order was removed");
     }
 }
