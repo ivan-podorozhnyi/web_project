@@ -1,15 +1,21 @@
 package view;
 
+import exceptions.BusinessException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class MainMenu {
 
-    private final BufferedReader reader =
-            new BufferedReader(new InputStreamReader(System.in));
-    private final AdminMenu adminMenu = new AdminMenu();
-    private final ClientMenu clientMenu = new ClientMenu();
+    private final BufferedReader reader;
+    private final AdminMenu adminMenu;
+    private final ClientMenu clientMenu;
+
+    public MainMenu(BufferedReader reader, AdminMenu adminMenu, ClientMenu clientMenu) {
+        this.reader = reader;
+        this.adminMenu = adminMenu;
+        this.clientMenu = clientMenu;
+    }
 
     public void showMenu() throws IOException {
         boolean isRunning = true;
@@ -19,13 +25,19 @@ public class MainMenu {
             switch (reader.readLine()) {
                 case "1": {
                     System.out.println("Welcome to admin menu");
+                    adminMenu.showMenu();
                     break;
                 }
                 case "2": {
                     System.out.println("Welcome to user menu");
+                    try {
+                        clientMenu.showMenu();
+                    } catch (BusinessException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
-                case "0": {
+                case "E": {
                     System.out.println("Good bye!");
                     isRunning = false;
                     break;
@@ -41,6 +53,6 @@ public class MainMenu {
         System.out.println("Greetings! Please choose your menu:");
         System.out.println("1. Admin menu");
         System.out.println("2. Client menu");
-        System.out.println("0. Exit");
+        System.out.println("E. Exit");
     }
 }
