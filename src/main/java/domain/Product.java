@@ -1,23 +1,19 @@
 package domain;
 
+import java.util.Objects;
+
 public class Product {
 
-    private long id;
     private String name;
     private int price;
 
-    public Product(long id, String name, int price) {
-        this.id = id;
+    public Product(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public Product(String productName) {
+        this.name = productName;
     }
 
     public String getName() {
@@ -43,7 +39,6 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (id != product.id) return false;
         if (price != product.price) return false;
         return name.equals(product.name);
 
@@ -51,9 +46,6 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + name.hashCode();
-        result = 31 * result + price;
-        return result;
+        return Objects.hash(name, price);
     }
 }

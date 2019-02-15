@@ -1,38 +1,60 @@
 package services;
 
-import domain.Order;
-import domain.Product;
+import domain.Client;
+
+import java.util.List;
 
 public interface ClientService {
-
     /**
-     * Create Order instance.
-     */
-    void addOrder();
-
-    /**
-     * Update Order.
+     * Create Client instance.
      *
-     * @param order    Order to be updated.
+     * @param name     Client name.
+     * @param lastName Client last name.
+     * @param phone    Client phone.
      */
-    void editOrder(Order order);
+    void createClient(String name, String lastName, String phone);
 
     /**
-     * Remove Order.
+     * Create Client instance.
      *
-     * @param order    Order instance to be removed.
+     * @param name     Client name.
+     * @param lastName Client last name.
+     * @param phone    Client phone.
+     * @param age      Client age.
+     * @param email    Client email.
      */
-    void removeOrder(Order order);
+    void createClient(String name, String lastName, String phone, int age, String email);
 
     /**
-     * Create Product instance.
-     */
-    void addProduct();
-
-    /**
-     * Remove Product.
+     * Update Client.
      *
-     * @param product    Product instance to be removed.
+     * @param newName     new Client name.
+     * @param newLastName new Client last name.
+     * @param newPhone    new Client phone.
      */
-    void removeProduct(Product product);
+    void editClient(int id, String newName, String newLastName, String newPhone);
+
+    /**
+     * Update Client.
+     *
+     * @param id          id of Client which will be modified.
+     * @param newName     new Client name.
+     * @param newLastName new Client last name.
+     * @param newPhone    new Client phone.
+     * @param newAge      new Client age.
+     * @param newEmail    new Client email.
+     */
+    void editClient(int id, String newName, String newPhone, String newLastName, int newAge, String newEmail);
+
+    /**
+     * Remove Client.
+     *
+     * @param id id of Client instance to be removed.
+     */
+    void removeClient(int id);
+
+    /**
+     * Show list of all existing clients.
+     */
+    List<Client> getAllClients();
 }
