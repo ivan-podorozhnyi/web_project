@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Client {
 
-    private long id;
+    private int id;
     private String name;
     private String lastName;
     private int age;
@@ -29,7 +29,7 @@ public class Client {
         this.phone = phone;
     }
 
-    public Client(long id, String name, String lastName, int age, String email, String phone) {
+    public Client(int id, String name, String lastName, int age, String email, String phone) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -38,11 +38,11 @@ public class Client {
         this.phone = phone;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
