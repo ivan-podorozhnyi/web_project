@@ -33,14 +33,14 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void createClient(String name, String lastName, String phone, int age, String email) {
         try {
-            validationService.validateAge(age);
+            validateInput(phone, age, email);
             Client client = new Client(name, lastName, phone);
             boolean result = clientDao.createClient(client);
             if (result) {
                 System.out.println(String.format("Client %s %s was created", client.getName(), client.getLastName()));
             }
         } catch (BusinessException e) {
-            e.printStackTrace();
+            System.out.println("Please retry");
         }
     }
 
@@ -51,6 +51,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void editClient(int id, String newName, String newLastName, String newPhone, int newAge, String newEmail) {
+        try {
+            validateInput(newPhone, newAge, newEmail);
+        } catch (BusinessException e) {
+            System.out.println("Please retry");
+        }
         boolean result = clientDao.editClient(id, newName, newLastName, newPhone, newAge, newEmail);
         if (result) {
             System.out.println("Client %s was created");
@@ -68,5 +73,11 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<Client> getAllClients() {
         return clientDao.getAllClients();
+    }
+
+    private void validateInput(String phone, int age, String email) throws BusinessException {
+        validationService.validateAge(age);
+        validationService.validatePhone(phone);
+        validationService.validateEmail(email);
     }
 }

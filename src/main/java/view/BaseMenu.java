@@ -1,6 +1,5 @@
 package view;
 
-import domain.Product;
 import services.ClientService;
 import services.OrderService;
 import services.ProductService;
@@ -42,6 +41,7 @@ public class BaseMenu {
     }
 
     void createClient() throws IOException {
+        System.out.println();
         System.out.println("Please input name");
         String name = reader.readLine();
         System.out.println("Please input last name");
@@ -56,6 +56,7 @@ public class BaseMenu {
     }
 
     void editClient() throws IOException {
+        System.out.println();
         System.out.println("Please input your id");
         int id = readInteger();
         System.out.println("Please input new name");
@@ -72,6 +73,7 @@ public class BaseMenu {
     }
 
     void removeClient() {
+        System.out.println();
         System.out.println("Please input id of your client");
         int id = readInteger();
         clientService.removeClient(id);
@@ -82,6 +84,7 @@ public class BaseMenu {
     }
 
     void createProduct() throws IOException {
+        System.out.println();
         System.out.println("Please input product name");
         String name = reader.readLine();
         System.out.println("Please input product price");
@@ -90,6 +93,7 @@ public class BaseMenu {
     }
 
     void editProduct() throws IOException {
+        System.out.println();
         System.out.println("Please input product name to edit");
         String name = reader.readLine();
         System.out.println("Please input new product price");
@@ -98,6 +102,7 @@ public class BaseMenu {
     }
 
     void removeProduct() throws IOException {
+        System.out.println();
         System.out.println("Please input name of product you want to remove");
         String name = reader.readLine();
         productService.removeProduct(name);
@@ -108,6 +113,7 @@ public class BaseMenu {
     }
 
     void createOrder() {
+        System.out.println();
         System.out.println("Please input client's id");
         int clientsId = readInteger();
         System.out.println("Please input comma separated products you want to add to order");
@@ -116,6 +122,7 @@ public class BaseMenu {
     }
 
     void editOrder() {
+        System.out.println();
         System.out.println("Please input product name to edit");
         int id = readInteger();
         System.out.println("Please input new product price");
@@ -124,6 +131,7 @@ public class BaseMenu {
     }
 
     void removeOrder() throws IOException {
+        System.out.println();
         System.out.println("Please input name of product you want to remove");
         String name = reader.readLine();
         productService.removeProduct(name);
@@ -134,6 +142,7 @@ public class BaseMenu {
     }
 
     void exitApp() {
+        System.out.println();
         System.out.println("Good bye!");
         System.exit(0);
     }

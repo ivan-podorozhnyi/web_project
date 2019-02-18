@@ -75,6 +75,7 @@ public class ClientMenu extends BaseMenu {
     }
 
     private void showGreetingMenu() {
+        System.out.println();
         System.out.println("Please choose action:");
         System.out.println("1. Create client");
         System.out.println("2. Edit client");

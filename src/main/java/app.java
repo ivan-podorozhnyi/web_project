@@ -10,14 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/*Домашка
 
-написать ряд валидаторов в частности
-        1) правильность ввода имейла
-        2) проверку на ввод телефона (только укр +38(050)777-22-22)
-        потом вносить в клиент только цифры 0504523109 10 цифр и код оператора
-        3) если у нас клиент или админ пробует добавить клиента с одинаковым телефоном
-        */
 public class app {
     public static void main(String[] args) throws IOException {
         ClientService clientService = new ClientServiceImpl();

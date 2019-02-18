@@ -81,6 +81,7 @@ public class AdminMenu extends BaseMenu {
     }
 
     private void showGreetingMenu() {
+        System.out.println();
         System.out.println("Please choose action:");
         System.out.println("1. Create client");
         System.out.println("2. Edit client");
@@ -102,7 +103,7 @@ public class AdminMenu extends BaseMenu {
         try {
             return Integer.valueOf(reader.readLine());
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Please input number!");
+            System.out.println("Please input a number!");
             return readInteger();
         }
     }
