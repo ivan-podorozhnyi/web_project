@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-public class app {
+public class App {
     public static void main(String[] args) throws IOException {
         ClientService clientService = new ClientServiceImpl();
         OrderService orderService = new OrderServiceImpl();

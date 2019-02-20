@@ -1,9 +1,26 @@
 package validators.Impl;
 
+import domain.Client;
 import exceptions.BusinessException;
+import services.ClientService;
+import services.OrderService;
+import services.ProductService;
 import validators.ValidationService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ValidationServiceImpl implements ValidationService {
+    private final ClientService clientService;
+    private final OrderService orderService;
+    private final ProductService productService;
+
+    public ValidationServiceImpl(ClientService clientService, OrderService orderService, ProductService productService) {
+        this.clientService = clientService;
+        this.orderService = orderService;
+        this.productService = productService;
+    }
+
     @Override
     public void validateAge(int age) throws BusinessException {
         if (age < 0 || age > 200) {
@@ -19,6 +36,15 @@ public class ValidationServiceImpl implements ValidationService {
             System.out.println("Please use next format XXX-XXX-XX-XX where X is digit.");
             System.out.println("Only 067, 063, 095 operators are supported.");
             throw new BusinessException("Incorrect phone!");
+        }
+        List<Client> phones = clientService.getAllClients();
+        for (Client client : phones) {
+            if (client.getPhone().equals(phone)) {
+                System.out.println(String.format("Client with id %d is the same with your input. " +
+                        "Please type different phone.", client.getId()));
+                throw new BusinessException("Phone number already exists!");
+
+            }
         }
     }
 

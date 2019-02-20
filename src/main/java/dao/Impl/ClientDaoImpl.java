@@ -55,6 +55,11 @@ public class ClientDaoImpl implements ClientDao {
         return new ArrayList<>(clients.values());
     }
 
+    @Override
+    public Client getClientById(int id) {
+        return clients.get(id);
+    }
+
     public static ClientDao getInstance() {
         if (clientDao == null) {
             clientDao = new ClientDaoImpl();

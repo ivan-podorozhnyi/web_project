@@ -1,8 +1,11 @@
 package view;
 
+import exceptions.BusinessException;
 import services.ClientService;
 import services.OrderService;
 import services.ProductService;
+import validators.Impl.ValidationServiceImpl;
+import validators.ValidationService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,12 +17,14 @@ public class BaseMenu {
     final ClientService clientService;
     final OrderService orderService;
     final ProductService productService;
+    private ValidationService validationService;
 
     public BaseMenu(BufferedReader reader, ClientService clientService, OrderService orderService, ProductService productService) {
         this.reader = reader;
         this.clientService = clientService;
         this.orderService = orderService;
         this.productService = productService;
+        this.validationService = new ValidationServiceImpl(this.clientService, this.orderService, this.productService);
     }
 
     int readInteger() {
@@ -40,7 +45,7 @@ public class BaseMenu {
         }
     }
 
-    void createClient() throws IOException {
+    void createClient() throws IOException, BusinessException {
         System.out.println();
         System.out.println("Please input name");
         String name = reader.readLine();
@@ -48,27 +53,37 @@ public class BaseMenu {
         String lastName = reader.readLine();
         System.out.println("Please input phone number");
         String phone = reader.readLine();
+        validationService.validatePhone(phone);
         System.out.println("PLease input age");
         int age = readInteger();
+        validationService.validateAge(age);
         System.out.println("Please input email");
         String email = reader.readLine();
+        validationService.validateEmail(email);
         clientService.createClient(name, lastName, phone, age, email);
     }
 
-    void editClient() throws IOException {
+    void editClient() throws IOException, BusinessException {
         System.out.println();
-        System.out.println("Please input your id");
+        System.out.println("Please input client id that you want to edit");
         int id = readInteger();
+        while (clientService.getClientById(id) != null){
+            System.out.println(String.format("Client with id %d was not found. Please input existing client id", id));
+            id = readInteger();
+        }
         System.out.println("Please input new name");
         String name = reader.readLine();
         System.out.println("Please input new last name");
         String lastName = reader.readLine();
         System.out.println("Please input new phone number");
         String phone = reader.readLine();
+        validationService.validatePhone(phone);
         System.out.println("PLease input new age");
         int age = readInteger();
+        validationService.validateAge(age);
         System.out.println("Please input new email");
         String email = reader.readLine();
+        validationService.validateEmail(email);
         clientService.editClient(id, name, lastName, phone, age, email);
     }
 

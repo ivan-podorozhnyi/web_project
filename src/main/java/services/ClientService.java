@@ -57,4 +57,11 @@ public interface ClientService {
      * Show list of all existing clients.
      */
     List<Client> getAllClients();
+
+    /**
+     * Return Client instance.
+     *
+     * @param id id of Client.
+     */
+    Client getClientById(int id);
 }

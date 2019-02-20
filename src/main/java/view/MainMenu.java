@@ -1,5 +1,7 @@
 package view;
 
+import exceptions.BusinessException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -28,7 +30,11 @@ public class MainMenu {
                 }
                 case "2": {
                     System.out.println("Welcome to user menu");
-                    clientMenu.showMenu();
+                    try {
+                        clientMenu.showMenu();
+                    } catch (BusinessException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
                 case "E": {

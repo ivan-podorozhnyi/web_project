@@ -13,4 +13,5 @@ public interface ClientDao {
 
     List<Client> getAllClients();
 
+    Client getClientById(int id);
 }
