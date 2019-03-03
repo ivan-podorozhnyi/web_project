@@ -1,5 +1,10 @@
 import dao.ClientDao;
-import dao.Impl.ClientDBDao;
+import dao.jdbc.ClientJDBCDao;
+import dao.jdbc.OrderJDBCDao;
+import dao.jdbc.ProductJDBCDao;
+import dao.OrderDao;
+import dao.ProductDao;
+import exceptions.BusinessException;
 import services.ClientService;
 import services.OrderService;
 import services.ProductService;
@@ -13,26 +18,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-/*домашка
-* добавить проверку существует ли клиент/това/ордер в базе при любой операции
-*
-* валидация номера телефона на существование
-* проверять телефон сразу, а не после ввода всех аргументов
-*
-* переделать хранение ордеров и товаров на мэп
-* переделать изменение клиента/итд по принципу сначала поиск если есть: а потом только ввод параметров
-* вынести инпут в отдельный метод
-*
-* */
-
-
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, BusinessException {
 
-        ClientDao clientDao = new ClientDBDao();
+        ClientDao clientDao = new ClientJDBCDao();
+        ProductDao productDao = new ProductJDBCDao();
+        OrderDao orderDao = new OrderJDBCDao();
+
         ClientService clientService = new ClientServiceImpl(clientDao);
-        OrderService orderService = new OrderServiceImpl();
-        ProductService productService = new ProductServiceImpl();
+        OrderService orderService = new OrderServiceImpl(orderDao, productDao);
+        ProductService productService = new ProductServiceImpl(productDao);
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         AdminMenu adminMenu = new AdminMenu(br, clientService, orderService, productService);
         ClientMenu clientMenu = new ClientMenu(br, clientService, orderService, productService);

@@ -1,4 +1,4 @@
-package dao.Impl;
+package dao.builtIn;
 
 import dao.ClientDao;
 import domain.Client;

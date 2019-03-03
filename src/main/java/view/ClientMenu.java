@@ -26,34 +26,22 @@ public class ClientMenu extends BaseMenu {
                     break;
                 }
                 case "2": {
-                    editClient();
-                    break;
-                }
-                case "3": {
-                    removeClient();
-                    break;
-                }
-                case "4": {
-                    showAllClients();
-                    break;
-                }
-                case "5": {
                     createOrder();
                     break;
                 }
-                case "6": {
+                case "3": {
                     editOrder();
                     break;
                 }
-                case "7": {
+                case "4": {
                     removeOrder();
                     break;
                 }
-                case "8": {
+                case "5": {
                     showClientOrders();
                     break;
                 }
-                case "9": {
+                case "6": {
                     showAllProducts();
                     break;
                 }
@@ -79,14 +67,11 @@ public class ClientMenu extends BaseMenu {
         System.out.println();
         System.out.println("Please choose action:");
         System.out.println("1. Create client");
-        System.out.println("2. Edit client");
-        System.out.println("3. Remove client");
-        System.out.println("4. Show all clients");
-        System.out.println("5. Create order");
-        System.out.println("6. Edit order");
-        System.out.println("7. Remove order");
-        System.out.println("8. Show client's orders");
-        System.out.println("9. Show all products");
+        System.out.println("2. Create order");
+        System.out.println("3. Edit order");
+        System.out.println("4. Remove order");
+        System.out.println("5. Show client's orders");
+        System.out.println("6. Show all products");
         System.out.println("R. Return to previous menu");
         System.out.println("E. Exit");
     }

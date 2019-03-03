@@ -1,6 +1,6 @@
 package services.impl;
 
-import dao.Impl.ProductDaoImpl;
+import dao.builtIn.ProductDaoImpl;
 import dao.ProductDao;
 import domain.Product;
 import services.ProductService;
@@ -14,6 +14,10 @@ public class ProductServiceImpl implements ProductService {
         this.productDao = ProductDaoImpl.getInstance();
     }
 
+    public ProductServiceImpl(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
     @Override
     public void createProduct(String name, int price) {
         Product product = new Product(name, price);
@@ -24,16 +28,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void editProduct(String name, int newPrice) {
-        boolean result = productDao.editProduct(name, newPrice);
+    public void editProduct(int productId, String newName, int newPrice) {
+        boolean result = productDao.editProduct(productId, newName, newPrice);
         if (result) {
             System.out.println("Product was edited");
         }
     }
 
     @Override
-    public void removeProduct(String productName) {
-        boolean result = productDao.removeProduct(productName);
+    public void removeProduct(int productId) {
+        boolean result = productDao.removeProduct(productId);
         if (result) {
             System.out.println("Product was removed");
         }

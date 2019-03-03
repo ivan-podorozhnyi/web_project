@@ -4,11 +4,17 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order {
-    private  int id;
+    private int id;
     private int clientId;
     private List<Product> products;
 
     public Order(int clientId, List<Product> products) {
+        this.clientId = clientId;
+        this.products = products;
+    }
+
+    public Order(int id, int clientId, List<Product> products) {
+        this.id = id;
         this.clientId = clientId;
         this.products = products;
     }

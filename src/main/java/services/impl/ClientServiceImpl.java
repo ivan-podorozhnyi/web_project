@@ -1,18 +1,9 @@
 package services.impl;
 
 import dao.ClientDao;
-import dao.Impl.ClientDaoImpl;
-import dao.Impl.ProductDaoImpl;
-import dao.OrderDao;
-import dao.Impl.OrderDaoImpl;
-import dao.ProductDao;
+import dao.builtIn.ClientDaoImpl;
 import domain.Client;
-import domain.Order;
-import domain.Product;
-import exceptions.BusinessException;
 import services.ClientService;
-import validators.Impl.ValidationServiceImpl;
-import validators.ValidationService;
 
 import java.util.List;
 
@@ -26,7 +17,6 @@ public class ClientServiceImpl implements ClientService {
 
     public ClientServiceImpl(ClientDao clientDao) {
         this.clientDao = clientDao;
-        this.validationService = new ValidationServiceImpl();
     }
 
     @Override
