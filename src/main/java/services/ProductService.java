@@ -16,17 +16,18 @@ public interface ProductService {
     /**
      * Edit Product instance.
      *
-     * @param name     name of the product to edit.
-     * @param newPrice new price of the product.
+     * @param productId id of the product to edit.
+     * @param newName   new name of the product.
+     * @param newPrice  new price of the product.
      */
-    void editProduct(String name, int newPrice);
+    void editProduct(int productId, String newName, int newPrice);
 
     /**
      * Remove Product.
      *
-     * @param productName name of the Product to be removed.
+     * @param productId id of the Product to be removed.
      */
-    void removeProduct(String productName);
+    void removeProduct(int productId);
 
     /**
      * Show list of all existing products.

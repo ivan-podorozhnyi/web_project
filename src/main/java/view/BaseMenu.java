@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BaseMenu {
     final BufferedReader reader;
@@ -40,8 +41,17 @@ public class BaseMenu {
         try {
             return Arrays.asList(reader.readLine().split("\\s*,\\s*"));
         } catch (IOException e) {
-            System.out.println("PLease input comma separated values");
+            System.out.println("Please input comma separated values");
             return readStringsList();
+        }
+    }
+
+    List<Integer> readIntsList() {
+        try {
+            return Arrays.asList(reader.readLine().split("\\s*,\\s*")).stream().map(Integer::parseInt).collect(Collectors.toList());
+        } catch (IOException e) {
+            System.out.println("Please input comma separated values");
+            return readIntsList();
         }
     }
 
@@ -67,7 +77,7 @@ public class BaseMenu {
         System.out.println();
         System.out.println("Please input client id that you want to edit");
         int id = readInteger();
-        while (clientService.getClientById(id) != null){
+        while (clientService.getClientById(id) != null) {
             System.out.println(String.format("Client with id %d was not found. Please input existing client id", id));
             id = readInteger();
         }
@@ -109,18 +119,20 @@ public class BaseMenu {
 
     void editProduct() throws IOException {
         System.out.println();
-        System.out.println("Please input product name to edit");
+        System.out.println("Please input product id to edit");
+        int id = readInteger();
+        System.out.println("Please input new product name");
         String name = reader.readLine();
         System.out.println("Please input new product price");
         int price = readInteger();
-        productService.editProduct(name, price);
+        productService.editProduct(id, name, price);
     }
 
     void removeProduct() throws IOException {
         System.out.println();
-        System.out.println("Please input name of product you want to remove");
-        String name = reader.readLine();
-        productService.removeProduct(name);
+        System.out.println("Please input id of product you want to remove");
+        int id = readInteger();
+        productService.removeProduct(id);
     }
 
     void showAllProducts() {
@@ -131,8 +143,8 @@ public class BaseMenu {
         System.out.println();
         System.out.println("Please input client's id");
         int clientsId = readInteger();
-        System.out.println("Please input comma separated products you want to add to order");
-        List<String> products = readStringsList();
+        System.out.println("Please input comma separated ids of products that you want to add to order");
+        List<Integer> products = readIntsList();
         orderService.createOrder(clientsId, products);
     }
 
@@ -147,9 +159,9 @@ public class BaseMenu {
 
     void removeOrder() throws IOException {
         System.out.println();
-        System.out.println("Please input name of product you want to remove");
-        String name = reader.readLine();
-        productService.removeProduct(name);
+        System.out.println("Please input id of product you want to remove");
+        int id = readInteger();
+        productService.removeProduct(id);
     }
 
     void showAllOrders() {

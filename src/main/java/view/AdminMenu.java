@@ -1,5 +1,6 @@
 package view;
 
+import exceptions.BusinessException;
 import services.ClientService;
 import services.OrderService;
 import services.ProductService;
@@ -13,7 +14,7 @@ public class AdminMenu extends BaseMenu {
         super(reader, clientService, orderService, productService);
     }
 
-    void showMenu() throws IOException {
+    void showMenu() throws IOException, BusinessException {
         boolean isRunning = true;
         while (isRunning) {
             showGreetingMenu();

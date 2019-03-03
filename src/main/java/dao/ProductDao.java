@@ -7,9 +7,11 @@ import java.util.List;
 public interface ProductDao {
     boolean createProduct(Product product);
 
-    boolean editProduct(String name, int newPrice);
+    boolean editProduct(int productId, String newName, int newPrice);
 
-    boolean removeProduct(String productName);
+    boolean removeProduct(int productId);
 
     List<Product> getAllProducts();
+
+    Product getProduct(int productId);
 }

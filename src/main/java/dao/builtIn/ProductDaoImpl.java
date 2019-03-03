@@ -1,4 +1,4 @@
-package dao.Impl;
+package dao.builtIn;
 
 import dao.ProductDao;
 import domain.Product;
@@ -31,9 +31,10 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean editProduct(String productName, int newPrice) {
+    public boolean editProduct(int productId, String newProductName, int newPrice) {
         for (Product product : productsList) {
-            if (product.getName().trim().contains(productName)){
+            if (product.getId() == productId){
+                product.setName(newProductName);
                 product.setPrice(newPrice);
                 return true;
             }
@@ -42,9 +43,9 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean removeProduct(String productName) {
+    public boolean removeProduct(int productId) {
         for (Product product : productsList) {
-            if (product.getName().trim().contains(productName)){
+            if (product.getId() == productId){
                 productsList.remove(product);
                 return true;
             }
@@ -55,5 +56,18 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public List<Product> getAllProducts() {
         return productsList;
+    }
+
+    @Override
+    public Product getProduct(int productId) {
+        Product product;
+        for (Product iter : productsList) {
+            if (iter.getId() == productId){
+                product = new Product(iter.getId(), iter.getName(), iter.getPrice());
+                return product;
+            }
+        }
+        System.out.println("Product with current id does not exist!");
+        return null;
     }
 }

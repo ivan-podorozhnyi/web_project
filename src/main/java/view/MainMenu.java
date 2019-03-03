@@ -17,7 +17,7 @@ public class MainMenu {
         this.clientMenu = clientMenu;
     }
 
-    public void showMenu() throws IOException {
+    public void showMenu() throws IOException, BusinessException {
         boolean isRunning = true;
         while (isRunning) {
             showGreetingMenu();

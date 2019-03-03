@@ -1,4 +1,4 @@
-package dao.Impl;
+package dao.builtIn;
 
 import dao.OrderDao;
 import domain.Order;

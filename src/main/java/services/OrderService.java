@@ -11,9 +11,9 @@ public interface OrderService {
      * Create Order instance.
      *
      * @param clientId client id related to new order.
-     * @param products list of products in new order.
+     * @param productIdList list of product ids in new order.
      */
-    void createOrder(int clientId, List<String> products);
+    void createOrder(int clientId, List<Integer> productIdList);
 
     /**
      * Edit Order instance.
