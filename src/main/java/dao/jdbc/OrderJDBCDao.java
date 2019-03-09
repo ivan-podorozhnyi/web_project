@@ -31,19 +31,18 @@ public class OrderJDBCDao extends JDBCDao implements OrderDao {
     }
 
     @Override
-    public boolean editOrder(int orderId, List<String> productsList) {
+    public boolean editOrder(int orderId, List<Integer> productIdsList) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASS);
-             PreparedStatement preparedStatement = connection.prepareStatement("update ORDERS set PRODUCTS=? where id = ?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("update ORDERS set PRODUCTS_IDS=? where id = ?")) {
             preparedStatement.setInt(1, orderId);
-            preparedStatement.setString(2, String.join(",", productsList));
-
+            String listString = productIdsList.toString();
+            preparedStatement.setString(2, listString.substring(1, listString.length() - 1));
             return preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println("Order was not updated.");
         }
         return false;
     }
-
 
     @Override
     public boolean removeOrder(int orderId) {

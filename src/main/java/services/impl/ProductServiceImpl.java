@@ -25,6 +25,9 @@ public class ProductServiceImpl implements ProductService {
         if (result) {
             System.out.println(String.format("Product %s was created", product.getName()));
         }
+        else {
+            System.out.println(String.format("Could not create product with name %s", name));
+        }
     }
 
     @Override
@@ -33,6 +36,9 @@ public class ProductServiceImpl implements ProductService {
         if (result) {
             System.out.println("Product was edited");
         }
+        else {
+            System.out.println(String.format("Could not update product with id %d", productId));
+        }
     }
 
     @Override
@@ -40,6 +46,9 @@ public class ProductServiceImpl implements ProductService {
         boolean result = productDao.removeProduct(productId);
         if (result) {
             System.out.println("Product was removed");
+        }
+        else {
+            System.out.println(String.format("Could not remove product with id %d", productId));
         }
     }
 

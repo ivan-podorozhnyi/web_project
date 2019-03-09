@@ -153,7 +153,7 @@ public class BaseMenu {
         System.out.println("Please input product name to edit");
         int id = readInteger();
         System.out.println("Please input new product price");
-        List<String> products = readStringsList();
+        List<Integer> products = readIntsList();
         orderService.editOrder(id, products);
     }
 

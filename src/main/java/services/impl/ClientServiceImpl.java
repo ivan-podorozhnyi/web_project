@@ -32,6 +32,9 @@ public class ClientServiceImpl implements ClientService {
         if (result) {
             System.out.println(String.format("Client %s %s was created", client.getName(), client.getLastName()));
         }
+        else {
+            System.out.println(String.format("Could not create client %s %s", client.getName(), client.getLastName()));
+        }
     }
 
     @Override
@@ -43,7 +46,10 @@ public class ClientServiceImpl implements ClientService {
     public void editClient(int id, String newName, String newLastName, String newPhone, int newAge, String newEmail) {
         boolean result = clientDao.editClient(id, newName, newLastName, newPhone, newAge, newEmail);
         if (result) {
-            System.out.println("Client %s was created");
+            System.out.println(String.format("Client with id #%d was updated", id));
+        }
+        else {
+            System.out.println(String.format("Could not update client with id %d", id));
         }
     }
 
@@ -51,7 +57,10 @@ public class ClientServiceImpl implements ClientService {
     public void removeClient(int id) {
         boolean result = clientDao.removeClient(id);
         if (result) {
-            System.out.println("Client was removed");
+            System.out.println(String.format("Client with id #%d was removed", id));
+        }
+        else {
+            System.out.println(String.format("Could not remove client with id %d", id));
         }
     }
 

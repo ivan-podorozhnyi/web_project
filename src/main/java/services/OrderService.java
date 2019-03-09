@@ -1,8 +1,6 @@
 package services;
 
-import domain.Client;
 import domain.Order;
-import domain.Product;
 
 import java.util.List;
 
@@ -10,7 +8,7 @@ public interface OrderService {
     /**
      * Create Order instance.
      *
-     * @param clientId client id related to new order.
+     * @param clientId      client id related to new order.
      * @param productIdList list of product ids in new order.
      */
     void createOrder(int clientId, List<Integer> productIdList);
@@ -18,10 +16,10 @@ public interface OrderService {
     /**
      * Edit Order instance.
      *
-     * @param clientId client id related to order which will be edited.
-     * @param products updated list of products in order.
+     * @param clientId   client id related to order which will be edited.
+     * @param productIds updated list of product ids in order.
      */
-    void editOrder(int clientId, List<String> products);
+    void editOrder(int clientId, List<Integer> productIds);
 
 
     /**
