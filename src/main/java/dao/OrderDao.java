@@ -8,7 +8,7 @@ import java.util.List;
 public interface OrderDao {
     boolean createOrder(Order order);
 
-    boolean editOrder(int orderId, List<String> productsList);
+    boolean editOrder(int orderId, List<Integer> productIdsList);
 
     boolean removeOrder(int orderId);
 

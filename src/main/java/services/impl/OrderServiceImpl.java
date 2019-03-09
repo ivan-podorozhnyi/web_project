@@ -39,20 +39,29 @@ public class OrderServiceImpl implements OrderService {
         if (result) {
             System.out.println("Order was created");
         }
+        else {
+            System.out.println(String.format("Could not create order with client id %d", clientId));
+        }
     }
 
     @Override
-    public void editOrder(int clientId, List<String> products) {
-        boolean result = orderDao.editOrder(clientId, products);
+    public void editOrder(int orderId, List<Integer> productIds) {
+        boolean result = orderDao.editOrder(orderId, productIds);
         if (result) {
             System.out.println("Order was edited");
+        }
+        else {
+            System.out.println(String.format("Could not update order with id %d", orderId));
         }
     }
 
     public void removeOrder(int orderId) {
         boolean result = orderDao.removeOrder(orderId);
         if (result) {
-            System.out.println("Product was removed");
+            System.out.println("Order was removed");
+        }
+        else {
+            System.out.println(String.format("Could not remove order with id %d", orderId));
         }
     }
 

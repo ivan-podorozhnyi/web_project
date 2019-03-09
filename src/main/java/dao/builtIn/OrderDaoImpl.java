@@ -34,12 +34,12 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public boolean editOrder(int orderId, List<String> productsList) {
+    public boolean editOrder(int orderId, List<Integer> productsIdsList) {
         for (Order order : ordersList) {
             if (order.getId() == orderId) {
                 List<Product> newProductsList = new ArrayList<>();
-                for (String productName : productsList) {
-                    Product product = new Product(productName);
+                for (Integer productId : productsIdsList) {
+                    Product product = new Product(productId);
                     newProductsList.add(product);
                 }
                 order.setProducts(newProductsList);
