@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:constant id="in" static-field="java.lang.System.in"/>
+    <bean id="reader" class="java.io.InputStreamReader">
+        <constructor-arg name="in" ref="in"/>
+    </bean>
+    <bean id="bufferedReader" class="java.io.BufferedReader">
+        <constructor-arg name="in" ref="reader"/>
+    </bean>
+
+    <bean id="clientDao" class="dao.jdbc.ClientJDBCDao"/>
+    <bean id="clientService" class="services.impl.ClientServiceImpl">
+        <constructor-arg name="clientDao" ref="clientDao"/>
+    </bean>
+
+    <bean id="orderDao" class="dao.jdbc.OrderJDBCDao"/>
+    <bean id="orderService" class="services.impl.OrderServiceImpl">
+        <constructor-arg name="orderDao" ref="orderDao"/>
+    </bean>
+
+    <bean id="productDao" class="dao.jdbc.ProductJDBCDao"/>
+    <bean id="productService" class="services.impl.ProductServiceImpl">
+        <constructor-arg name="productDao" ref="productDao"/>
+    </bean>
+
+    <bean id="menu" class="view.MainMenu">
+        <constructor-arg name="reader" ref="bufferedReader"/>
+        <constructor-arg name="adminMenu" ref="adminMenu"/>
+        <constructor-arg name="clientMenu" ref="clientMenu"/>
+    </bean>
+
+    <bean id="adminMenu" class="view.AdminMenu">
+        <constructor-arg name="clientService" ref="clientService"/>
+        <constructor-arg name="orderService" ref="orderService"/>
+        <constructor-arg name="productService" ref="productService"/>
+        <constructor-arg name="reader" ref="bufferedReader"/>
+    </bean>
+
+    <bean id="clientMenu" class="view.ClientMenu">
+        <constructor-arg name="clientService" ref="clientService"/>
+        <constructor-arg name="orderService" ref="orderService"/>
+        <constructor-arg name="productService" ref="productService"/>
+        <constructor-arg name="reader" ref="bufferedReader"/>
+    </bean>
+
+</beans>

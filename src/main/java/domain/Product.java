@@ -1,7 +1,11 @@
 package domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Entity
+@Table(name = "PRODUCTS")
 public class Product {
 
     private int id;

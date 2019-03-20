@@ -5,6 +5,7 @@ import dao.jdbc.ProductJDBCDao;
 import dao.OrderDao;
 import dao.ProductDao;
 import exceptions.BusinessException;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import services.ClientService;
 import services.OrderService;
 import services.ProductService;
@@ -18,24 +19,29 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
+/*дз
+перевести все бины на аннотации*/
+
 public class App {
     public static void main(String[] args) throws IOException, BusinessException {
+//
+//        ClientDao clientDao = new ClientJDBCDao();
+//        ProductDao productDao = new ProductJDBCDao();
+//        OrderDao orderDao = new OrderJDBCDao();
+//
+//        ClientService clientService = new ClientServiceImpl(clientDao);
+//        OrderService orderService = new OrderServiceImpl(orderDao, productDao);
+//        ProductService productService = new ProductServiceImpl(productDao);
+//
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        AdminMenu adminMenu = new AdminMenu(br, clientService, orderService, productService);
+//        ClientMenu clientMenu = new ClientMenu(br, clientService, orderService, productService);
+//
+//        MainMenu mainMenu = new MainMenu(br, adminMenu, clientMenu);
 
-        ClientDao clientDao = new ClientJDBCDao();
-        ProductDao productDao = new ProductJDBCDao();
-        OrderDao orderDao = new OrderJDBCDao();
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("app.xml");
 
-        ClientService clientService = new ClientServiceImpl(clientDao);
-        OrderService orderService = new OrderServiceImpl(orderDao, productDao);
-        ProductService productService = new ProductServiceImpl(productDao);
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        AdminMenu adminMenu = new AdminMenu(br, clientService, orderService, productService);
-        ClientMenu clientMenu = new ClientMenu(br, clientService, orderService, productService);
-
-        MainMenu mainMenu = new MainMenu(br, adminMenu, clientMenu);
+        MainMenu mainMenu = (MainMenu) context.getBean("menu");
         mainMenu.showMenu();
     }
 }
-
-

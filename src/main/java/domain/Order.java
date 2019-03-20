@@ -1,8 +1,12 @@
 package domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "ORDERS")
 public class Order {
     private int id;
     private int clientId;

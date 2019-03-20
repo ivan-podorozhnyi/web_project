@@ -1,14 +1,32 @@
 package domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "CLIENTS")
 public class Client {
 
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "LASTNAME")
     private String lastName;
+
+    @Column(name = "AGE")
     private int age;
+
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "PHONE")
     private String phone;
 
     public Client(String name,
